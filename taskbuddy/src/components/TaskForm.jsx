@@ -1,13 +1,20 @@
 import React, { useState } from 'react'
 
-export default function 
-() {
+export default function TaskForm({addTask}) {
     const [task,setTask] = useState('');
     const [priority,setPriority] = useState('Medium');
     const [category,setCategory] = useState('General');
 
+    const handlesubmit= (e)=> {
+        e.preventDefault();
+        addTask({text:task,priority,category,completed:false});
+        setPriority("Medium");
+        setCategory('General');
+        setTask('')
+    }
+
   return (
-    <form class='task-form'>
+    <form onSubmit={handlesubmit}class='task-form'>
        <div id='btn'>
          <input type='text'
         placeholder='Enter Your Task'
